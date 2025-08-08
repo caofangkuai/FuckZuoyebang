@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="renderer" content="webkit" />
+	<title>Fuck Zuoyebang</title>
+	<link rel="stylesheet" href="mdui.css" />
+	<script src="mdui.global.js"></script>
+	<style>
+		/* 全局文本自动换行设置 */
+		* {
+			word-wrap: break-word !important;
+			word-break: break-word !important;
+		}
+
+		:root {
+			--primary: #4285f4;
+			--secondary: #ea4335;
+			--accent: #fbbc05;
+			--success: #34a853;
+			--dark: #202124;
+			--light: #f8f9fa;
+			--gray: #9aa0a6;
+			--shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+		}
+
+		body {
+			background: linear-gradient(135deg, #f5f7fa 0%, #e8edf3 100%);
+			min-height: 100vh;
+			margin: 0;
+			padding: 0;
+			font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+		}
+
+		.container {
+			width: 100%;
+			margin: 0 auto;
+			padding: 12px;
+			box-sizing: border-box;
+		}
+
+		header {
+			text-align: center;
+			margin: 30px 0 25px;
+			padding-bottom: 18px;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+			position: relative;
+		}
+
+		header::after {
+			content: "";
+			position: absolute;
+			bottom: -1px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 150px;
+			height: 3px;
+			background: var(--secondary);
+			border-radius: 3px;
+		}
+
+		h1 {
+			color: var(--primary);
+			margin-bottom: 12px;
+			font-size: 28px;
+			letter-spacing: 0.5px;
+		}
+
+		header p {
+			font-size: 16px;
+			font-weight: 500;
+			color: var(--dark);
+			margin: 0;
+			opacity: 0.85;
+		}
+
+		.reference-link {
+			text-decoration: none;
+			color: var(--primary);
+			position: relative;
+			padding-bottom: 2px;
+		}
+
+		.reference-link::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background: var(--primary);
+			transform: scaleX(0);
+			transition: transform 0.3s ease;
+		}
+
+		.reference-link:hover {
+			text-decoration: none;
+		}
+
+		.reference-link:hover::after {
+			transform: scaleX(1);
+		}
+
+		/* 按钮容器样式 */
+		.button-container {
+			overflow-x: auto;
+			padding-bottom: 8px;
+			margin-bottom: 12px;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.button-container::-webkit-scrollbar {
+			height: 6px;
+		}
+
+		.button-container::-webkit-scrollbar-thumb {
+			background: rgba(0, 0, 0, 0.1);
+			border-radius: 3px;
+		}
+
+		.button-inner {
+			display: flex !important;
+			flex-direction: column !important;
+			gap: 8px !important;
+		}
+
+		.button-inner br {
+			display: none !important;
+		}
+
+		/* 卡片样式优化 */
+		mdui-card {
+			border-radius: 12px !important;
+			box-shadow: var(--shadow) !important;
+			transition:
+				transform 0.2s ease,
+				box-shadow 0.2s ease;
+			overflow: hidden;
+		}
+
+		mdui-card:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1) !important;
+		}
+
+		/* 卡片内容区域边距调整 */
+		.mdui-card-content {
+			padding: 0 16px !important;
+		}
+
+		/* 描述文本区域换行优化 */
+		.mdui-typo {
+			line-height: 1.8 !important;
+		}
+
+		/* 警告提示样式 */
+		.mdui-alert-warning {
+			background-color: #fff8e1 !important;
+			border-left-color: var(--accent) !important;
+			border-radius: 8px !important;
+			padding: 15px !important;
+		}
+
+		/* 按钮样式优化 */
+		mdui-button {
+			transition: all 0.2s ease !important;
+			border-radius: 6px !important;
+			padding: 8px 16px !important;
+			font-weight: 500 !important;
+			letter-spacing: 0.3px !important;
+			word-wrap: break-word !important;
+			word-break: break-word !important;
+		}
+
+		mdui-button:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1) !important;
+		}
+
+		mdui-button:active {
+			transform: translateY(0);
+		}
+
+		/* 文本框样式 */
+		mdui-text-field {
+			border-radius: 8px !important;
+			transition: all 0.2s ease !important;
+		}
+
+		mdui-text-field:focus-within {
+			box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15) !important;
+		}
+
+		footer {
+			margin-top: 50px !important;
+			padding: 25px 0 !important;
+			background: rgba(255, 255, 255, 0.7) !important;
+			border-radius: 12px 12px 0 0 !important;
+			box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03) !important;
+			color: var(--gray) !important;
+			font-size: 14px !important;
+			letter-spacing: 0.5px;
+			text-align: center !important;
+		}
+
+		footer p {
+			margin: 0 !important;
+			padding: 5px 0 !important;
+			transition: color 0.3s ease !important;
+			margin-left: auto !important;
+			margin-right: auto !important;
+			max-width: 80% !important;
+			/* 限制最大宽度，增强居中视觉效果 */
+		}
+
+		footer p:hover {
+			color: var(--primary) !important;
+		}
+
+		/* 添加额外信息区域样式 */
+		.footer-extra {
+			margin-top: 10px !important;
+			font-size: 12px !important;
+			opacity: 0.8 !important;
+		}
+
+		/* 描述文本样式 */
+		.mdui-typo {
+			line-height: 1.7 !important;
+			color: rgba(0, 0, 0, 0.8) !important;
+			font-size: 15px !important;
+		}
+
+		/* 标题样式 */
+		h3.mdui-text-color-black {
+			font-size: 18px !important;
+			color: var(--dark) !important;
+			font-weight: 600 !important;
+			margin-top: 30px !important;
+		}
+
+		/* 分隔线样式 */
+		.mdui-divider {
+			margin: 20px 0 !important;
+			background-color: rgba(0, 0, 0, 0.05) !important;
+		}
+
+		/* 对话框样式 */
+		.mdui-dialog {
+			border-radius: 12px !important;
+		}
+
+		.mdui-dialog-headline {
+			font-size: 20px !important;
+			font-weight: 600 !important;
+		}
+
+		/* 动画效果 */
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(10px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.container>* {
+			animation: fadeIn 0.5s ease forwards;
+		}
+
+		.mdui-alert {
+			animation: fadeIn 0.6s ease 0.1s forwards;
+			opacity: 0;
+		}
+
+		.button-container {
+			animation: fadeIn 0.6s ease 0.2s forwards;
+			opacity: 0;
+		}
+
+		/* 输入框美化及自动换行设置 */
+		mdui-text-field {
+			border-radius: 8px !important;
+			transition: all 0.2s ease !important;
+			min-height: 60px !important;
+			/* 增加最小高度 */
+		}
+
+		mdui-text-field input,
+		mdui-text-field textarea {
+			white-space: pre-wrap !important;
+			/* 自动换行 */
+			word-wrap: break-word !important;
+			/* 长单词换行 */
+			min-height: 40px !important;
+			padding-top: 12px !important;
+			padding-bottom: 12px !important;
+		}
+
+		mdui-text-field:focus-within {
+			box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15) !important;
+		}
+
+		/* 分隔线样式优化 */
+		.mdui-divider-custom {
+			margin: 15px 0 !important;
+			height: 1px !important;
+			background: linear-gradient(90deg,
+					transparent,
+					rgba(0, 0, 0, 0.1),
+					transparent) !important;
+		}
+
+		/* 添加按钮居中样式 */
+		.add-button-container {
+			display: flex !important;
+			justify-content: center !important;
+			margin-top: 8px !important;
+		}
+	</style>
+</head>
+
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
+	<noscript>
+		<p style="text-align: center; padding: 20px; color: #666">
+			本页面需要浏览器支持（启用）JavaScript
+		</p>
+	</noscript>
+	<div class="container">
+		<header>
+			<h1>Fuck Zuoyebang</h1>
+			<p>
+				By
+				<a href="https://www.caofangkuai666.top" class="reference-link">caofangkuai</a>
+			</p>
+			<br />
+			<p>
+				你是第<img src="https://w.saobby.com/w/s4mlp679" />个访问此网站的
+			</p>
+		</header>
+		<mdui-card class="mdui-p-3 mdui-m-y-3" style="width: 100%; box-sizing: border-box">
+			<div class="mdui-card-content">
+				<div class="mdui-alert mdui-alert-warning mdui-m-b-3">
+					<div class="mdui-alert-content">
+						<p>
+							注:
+							此为理论方案，不一定有效，你的浏览器需要支持Intent
+							Scheme Url
+						</p>
+						<mdui-button onclick="supportBrowsers()" class="mdui-m-t-2">查看支持的浏览器列表</mdui-button>
+						<p id="UA" style="
+                                    background-image: -webkit-linear-gradient(
+                                        bottom,
+                                        red,
+                                        #ffe58b,
+                                        blue
+                                    );
+                                    -webkit-background-clip: text;
+                                    -webkit-text-fill-color: transparent;
+                                ">
+							您的浏览器UA:
+						</p>
+						<p id="device">您的设备型号:</p>
+						演示视频:<br/>
+						<video src="screen-20250728-001055.mp4" controls width="100%" height="160"></video>
+					</div>
+				</div>
+				<p class="mdui-typo mdui-p-x-3">
+					原理说明: 基于Intent Scheme Url攻击，参考文献
+					<a href="https://blog.csdn.net/weixin_39190897/article/details/132529090" class="reference-link">
+						https://blog.csdn.net/weixin_39190897/article/details/132529090
+					</a>
+				</p>
+				<div id="content" class="mdui-m-y-3 mdui-p-x-3 button-inner"></div>
+				<div class="button-inner">
+					<mdui-button href="settings://com.android.settings.slices" class="mdui-m-y-1">
+						打开SliceDeepLinkSpringBoard?</mdui-button><br />
+					<mdui-button
+						href="intent:#Intent;action=android.settings.SETTINGS;S.:android:show_fragment=com.android.settings.ChooseLockPassword$ChooseLockPasswordFragment;B.confirm_credentials=false;end"
+						class="mdui-m-y-1">设置绕过Pin码（android 3.0-4.3）</mdui-button><br />
+					<mdui-button href="intent:#Intent;component=com.tencent.mtt/com.tencent.mtt.debug.DbgMemWatch;end"
+						class="mdui-m-y-1">QQ浏览器崩溃</mdui-button><br />
+					<mdui-button
+						href="intent:#Intent;action=android.intent.action.INSERT_OR_EDIT;S.name=magic;S.phone=+86114514;i.phone_type=2;type=vnd.android.cursor.item/person;end"
+						class="mdui-m-y-1">添加联系人</mdui-button><br />
+					<mdui-button href="intent:package:bin.mt.plus#Intent;action=android.intent.action.DELETE;end"
+						class="mdui-m-y-1">卸载MT管理器</mdui-button><br />
+					<mdui-button href="intent:#Intent;action=android.media.action.STILL_IMAGE_CAMERA;end"
+						class="mdui-m-y-1">打开相机</mdui-button><br />
+					<mdui-button href="intent:smsto:114514#Intent;action=android.intent.action.SENDTO;end"
+						class="mdui-m-y-1">发送短信到114514</mdui-button><br />
+					<mdui-button
+						href="intent:https://project.caofangkuai666.top/zyb/index.html#Intent;component=com.android.browser/com.android.browser.BrowserActivity;end"
+						class="mdui-m-y-1">打开原生浏览器</mdui-button><br />
+				</div>
+
+				<h3 class="mdui-text-color-black mdui-m-t-4 mdui-m-b-2 mdui-p-x-3">
+					添加其他Intent Scheme Url:
+				</h3>
+				<div class="mdui-p-x-3">
+					<mdui-text-field id="pn" label="包名" placeholder="包名" value="com.android.settings"
+						class="mdui-m-b-3"></mdui-text-field>
+					<mdui-text-field id="cn" label="完整类名(带包名)" placeholder="完整类名" class="mdui-m-b-3"></mdui-text-field>
+					<div class="add-button-container">
+						<mdui-button onclick="addOther()" class="mdui-color-primary mdui-m-b-2">添加</mdui-button>
+					</div>
+					<br />
+				</div>
+			</div>
+		</mdui-card>
+		<footer class="mdui-text-center mdui-text-color-grey-500 mdui-m-t-4 mdui-p-t-2">
+			<p>Fuck Zuoyebang &copy; 2025</p>
+			<p class="footer-extra">本页面仅作技术研究使用</p>
+		</footer>
+	</div>
+	<script>
+		function toast(text) {
+		    mdui.snackbar({
+		        message: text,
+		        autoCloseDelay: 620,
+		    });
+		}
+		
+		function checkCVE20141939(){
+			for (let obj in window) {
+				try {
+		    		if ("getClass" in window[obj] || "getClassLoader" in window[obj]) {
+		      			mdui.dialog({
+		        			headline: "您的浏览器环境过于逆天😅",
+		        			description: "您的作业帮学习机浏览器可用CVE-2014-1939执行Jvav代码开启开发者,是否前往?",
+		        			actions: [{
+		            			text: "取消",
+		            			onClick: function() {}
+		        			},{
+		            			text: "前往",
+		            			onClick: function() {
+		              				window.location.href = "CVE-2014-1939.html";
+		            			}
+		        			}]
+		    			});
+		    		}
+				} catch(e) {}
+		  }
+		}
+		
+		window.onload = function() {
+		    let settings = "com.android.settings";
+		
+		    add("打开开发者模式", settings, "com.android.settings.Settings$DevelopmentSettingsActivity", "com.android.settings.Settings$DevelopmentSettingsDashboardActivity", "com.android.settings.DevelopmentSettings");
+		    add("打开个人中心：开发者密码弹窗", "com.zuoyebang.iot.pad.zpusercenter", "com.zuoyebang.iot.pad.developer.ui.DeveloperModeRequestActivity");
+		    add("打开关于本机", settings, "com.android.settings.Settings$DeviceInfoSettingsActivity", "com.android.settings.Settings$MyDeviceInfoActivity");
+		    add("打开个人中心：DNS设置", "com.zuoyebang.iot.pad.zpusercenter", "com.zuoyebang.iot.pad.developer.ui.dns.DNSConfigActivity");
+		    add("打开原生设置搜索栏", "com.android.settings.intelligence", "com.android.settings.intelligence.search.SearchActivity");
+		    add("打开无障碍设置", settings, "com.android.settings.Settings$AccessibilitySettingsActivity");
+		    add("打开安全设置", settings, "com.android.settings.Settings$SecurityDashboardActivity");
+		    add("打开VPN设置", settings, "com.android.settings.Settings$VpnSettingsActivity");
+		    add("打开受信任的凭据", settings, "com.android.settings.Settings$TrustedCredentialsSettingsActivity");
+		    add("打开开放源代码许可", settings, "com.android.settings.SettingsLicenseActivity");
+		    add("打开个人中心：扫码绑定", "com.zuoyebang.iot.pad.zpusercenter", "com.zuoyebang.iot.pad.lib_studyroom.QRScanActivity");
+		    add("打开应用商店测试界面", "com.zuoyebang.iot.pad.appstore", "com.zuoyebang.iot.pad.appstore.news.presentation.activity.TestActivity");
+		    add("打开拨号盘", "com.android.contacts", "com.android.contacts.activities.DialtactsActivity");
+		    add("打开EngineerMode-3646633", "com.mediatek.engineermode");
+		
+		    // 为所有按钮添加点击事件
+		    document.querySelectorAll("mdui-button[href]").forEach(btn => {
+		        btn.onclick = function() {
+		            toast("Fuck Zuoyebang!!!");
+		        }
+		    });
+		
+		    document.getElementById("UA").innerText = "您的浏览器UA: " + navigator.userAgent;
+			let device = navigator.userAgent.match(/ZPD\d{4}/);
+			let  deviceName = "";
+			if(device == "ZPD1201"){
+				deviceName = "T20Pro+";
+			}else if(device == "ZPD1271" || device == "ZPD1272" || device =="ZPD1273"){
+				deviceName = "T30";
+			}else if(device == "ZPD1272"){
+				deviceName = "T35";
+			}else if(device == "ZPD1202"){
+				deviceName = "P20";
+			}else if(device == "ZPD1203"){
+				deviceName = "P30";
+			}else if (device == "ZPD1301"){
+				deviceName = "X28";
+			}else if(device == "ZPD1321"){
+				deviceName = "X50";
+			}else if(device == "ZPD1401"){
+				deviceName = "X58";
+			}
+			document.getElementById("device").innerText = "您的设备型号: " + deviceName + "(" + device + ")";
+
+		    checkCVE20141939();
+		}
+		
+		function supportBrowsers() {
+		    mdui.dialog({
+		        headline: "支持的浏览器列表",
+		        description: `
+		            悟空浏览器
+		            via
+		            今日头条
+		            夸克
+		        `,
+		        actions: [{
+		            text: "确定",
+		            onClick: function() {}
+		        }]
+		    });
+		}
+		
+		function empty(text) {
+		    return (text == null || text == "" || text == undefined);
+		}
+		
+		function add(name, packageName, className) {
+		    var count = 1;
+		
+		    function toIntentURL(packageName, className) {
+		        return `#Intent;component=${packageName}/${escape(className.replace(packageName,""))};end`;
+		    }
+		
+		    function createButton(text, link) {
+		        console.log(link);
+		
+		        let btn = document.createElement("mdui-button");
+		        btn.setAttribute("href", link);
+		        btn.textContent = text;
+		        btn.className = "mdui-m-y-1";
+		
+		        document.getElementById("content").appendChild(btn);
+		        document.getElementById("content").appendChild(document.createElement("br"));
+		
+		        count++;
+		
+		        // 添加点击事件
+		        btn.onclick = function() {
+		            toast("Fuck Zuoyebang!!!");
+		        }
+		    }
+		
+		    const list = {
+		        "打开开发者模式": [
+		            "#Intent;action=android.settings.APPLICATION_DEVELOPMENT_SETTINGS;end",
+		            "#Intent;component=com.android.settings/.SubSettings;S.%3Asettings%3Ashow_fragment=com.android.settings.development.DevelopmentSettingsDashboardFragment;end",
+		            "#Intent;action=android.intent.action.MAIN;launchFlags=0x10810000;component=com.android.settings/.SettingsActivity;S.%3Asettings%3Ashow_fragment=com.android.settings.development.DevelopmentSettingsDashboardFragment;end"
+		        ],
+		        "打开拨号盘": [
+		            "#Intent;action=android.intent.action.DIAL;end",
+		            "href=tel:3646633"
+		        ],
+		        "打开EngineerMode-3646633": [
+		            "android_secret_code://3646633#Intent;action=android.provider.Telephony.SECRET_CODE;end",
+		            "tel:3646633#Intent;action=android.intent.action.DIAL;end",
+		            "href=tel:3646633"
+	 	        ]
+		    };
+		
+		    for (let j = 2; j < arguments.length; j++) {
+		        const url = toIntentURL(packageName, arguments[j]);
+		        createButton(name + "(方法" + count + ")", "intent:" + url);
+		        createButton(name + "(方法" + count + ")", "android-app://" + packageName + "/" + url);
+		        if (packageName == "com.android.settings") {
+		    		createButton(name + "(方法" + count + ")", "intent://settings/" + url);
+		        }
+		    }
+		    if (!empty(list[name]) && list[name].length > 0) {
+		        for (let i = 0; i < list[name].length; i++) {
+		            if (list[name][i].startsWith("href=")) {
+		                createButton(name + "(方法" + count + ")", list[name][i].replace("href=", ""));
+		            } else {
+		                createButton(name + "(方法" + count + ")", "android-app://" + packageName + "/" + list[name][i]);
+		                createButton(name + "(方法" + count + ")", "intent:" + list[name][i]);
+		                createButton(name + "(方法" + count + ")", "intent://settings/" + list[name][i]);
+		            }
+		        }
+		    }
+		    // 添加分隔线
+		    const divider = document.createElement("div");
+		    divider.className = "mdui-divider mdui-divider-custom";
+		    document.getElementById("content").appendChild(divider);
+		}
+		
+		function addOther() {
+		    const pn = document.getElementById("pn").value;
+		    const cn = document.getElementById("cn").value;
+		    if (empty(pn) || empty(cn)) {
+		        toast("包名或类名不能为空");
+		    } else {
+		        add("打开" + cn, pn, cn);
+		        // 清空输入框
+		        document.getElementById("cn").value = "";
+		        toast("添加成功");
+		    }
+		}
+	</script>
+</body>
+
+</html>
